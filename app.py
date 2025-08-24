@@ -12,7 +12,7 @@ from langchain.chains import ConversationalRetrievalChain
 import streamlit as st
 from streamlit_chat import message # pip install streamlit_chat
 
-
+st.sidebar.title('Langchain Retreival')
 # Load env variables
 load_dotenv(find_dotenv())
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -24,7 +24,7 @@ llm = ChatOpenAI(temperature=0.0, model=llm_model)
 embedding = OpenAIEmbeddings(model='text-embedding-3-small')
 
 #==== Streamlit front-end ====
-st.title("Docs QA Bot using Langchain")
+st.title("Docs QA Bot")
 st.header("Upload your docs and ask questions...")
 
 
