@@ -1,11 +1,4 @@
 
-try:
-    __import__('pysqlite3')
-    import sys
-    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-except ImportError:
-    pass
-    
 import os
 from dotenv import find_dotenv, load_dotenv
 import openai
@@ -73,15 +66,6 @@ if uploaded_files and 'vector_db' not in st.session_state:
         # Split text into chunks
         text_splitter = CharacterTextSplitter(chunk_size=1200, chunk_overlap=10)
         docs = text_splitter.split_documents(documents)
-
-        # # Drop old collection if exists
-        # vectordb = Chroma(
-        #                 embedding_function=embedding,
-        #                 persist_directory=persist_dir,
-        #                 collection_name="my_collection"
-        #                 )
-        # vectordb.delete_collection()
-
 
         # Rebuild collection
         vectordb = Chroma.from_documents(
